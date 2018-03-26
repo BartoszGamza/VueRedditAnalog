@@ -33,7 +33,6 @@ body
     text-align center
     margin 0px auto
   h3
-  
   line-height 24px
   display inline-block
   vertical-align middle

@@ -9,6 +9,12 @@
           <img v-if="post.data.is_reddit_media_domain" :src="post.data.url">
           <!-- <b-img-lazy :src="post.data.url" center fluid-grow width="500" height="500" blank-color="#bbb" alt="img" class="my-5" /> -->
         </div> 
+        <div class="score">
+          ⬆️ {{post.data.score}} by {{post.data.author}}
+        </div>
+        <div class="time">
+            <h3></h3>
+        </div>
       </div>
     </div>
   </div>
@@ -42,6 +48,9 @@ export default {
         .then(result => {
           this.posts = result.data.children
         })
+    },
+    getTime(val) {
+      return 
     }
   }
 }
@@ -59,11 +68,14 @@ export default {
   margin-top 25px
   margin bottom 25px 
   width 500px
-  max-height 815px
+  
   background-color white
   
   .post-heading
     margin 5px
+  .score
+    margin 5px
+  
 img 
   width 100%
   
