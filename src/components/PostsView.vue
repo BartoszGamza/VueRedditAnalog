@@ -3,7 +3,7 @@
     <div v-for="post in weeklyFilter" :key="post.id">
       <div class="card">
         <div class="post-heading">
-          {{post.data.title}}
+          <a>{{post.data.title}}</a>
         </div>
         <div class="post-img">
           <img v-if="post.data.is_reddit_media_domain" :src="post.data.url">
@@ -47,17 +47,26 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .container
-  padding-top 50px
+  padding-top 25px
+  padding-bottom 25px
 .card
-  margin 0 auto
+  box-sizing border-box
+  border solid black 1px
+  margin-left  auto
+  margin-right auto 
+  margin-top 25px
+  margin bottom 25px 
   width 500px
-  height 
-  padding 15px
-img
-  max-width 500px
-  max-height 800px
+  max-height 815px
+  background-color white
+  
+  .post-heading
+    margin 5px
+img 
+  width 100%
+  
   
 
 </style>
