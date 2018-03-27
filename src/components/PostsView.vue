@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     load() {
-      const url = 'https://www.reddit.com/r/analog/.json'
+      const url = 'https://www.reddit.com/r/analog.json?limit=100'
       fetch(url)
         .then(response => response.json())
         .then(result => {
