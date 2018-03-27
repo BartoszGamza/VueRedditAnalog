@@ -3,10 +3,10 @@
     <div v-for="post in weeklyFilter" :key="post.id">
       <div class="card">
         <div class="post-heading">
-          <a>{{post.data.title}}</a>
+          <a :href="linkify(post.data.permalink)" target="_blank">{{post.data.title}}</a>
         </div>
         <div class="post-img">
-          <img v-if="post.data.is_reddit_media_domain" :src="post.data.url">
+          <img :src="post.data.preview.images[0].source.url">
           <!-- <b-img-lazy :src="post.data.url" center fluid-grow width="500" height="500" blank-color="#bbb" alt="img" class="my-5" /> -->
         </div> 
         <div class="score">
@@ -51,6 +51,9 @@ export default {
     },
     getTime(val) {
       return 
+    },
+    linkify(link) {
+      return `https://www.reddit.com${link}`
     }
   }
 }
