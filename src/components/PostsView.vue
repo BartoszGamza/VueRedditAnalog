@@ -15,6 +15,7 @@
            {{getTime(post.data.created_utc)}} ago
         </div>
       </div>
+      <button @click="loadMore()">Load more</button>
     </div>
   </div>
 </template>
@@ -39,8 +40,16 @@ export default {
     this.load()
   },
   methods: {
+    loadMore() {
+      const url = 'https://www.reddit.com/r/analog.json'
+      fetch(url)
+        .then(response => response.json())
+        .then(result => {
+          this.posts = this.posts.concat(result.data.children)
+        })
+    },
     load() {
-      const url = 'https://www.reddit.com/r/analog.json?limit=100'
+      const url = 'https://www.reddit.com/r/analog.json'
       fetch(url)
         .then(response => response.json())
         .then(result => {
@@ -89,8 +98,8 @@ export default {
     margin 8px 5px 5px 5px 
     display inline-block
     float right
-  
-img 
+
+img
   width 100%
 
 </style>
