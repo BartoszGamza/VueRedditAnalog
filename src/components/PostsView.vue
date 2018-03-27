@@ -7,13 +7,12 @@
         </div>
         <div class="post-img">
           <img :src="post.data.preview.images[0].source.url">
-          <!-- <b-img-lazy :src="post.data.url" center fluid-grow width="500" height="500" blank-color="#bbb" alt="img" class="my-5" /> -->
         </div> 
         <div class="score">
-          ⬆️ {{post.data.score}} by {{post.data.author}}
+           △ {{post.data.score}} ☞ {{post.data.author}} ✉︎ {{post.data.num_comments}}
         </div>
         <div class="time">
-            <h3></h3>
+           {{getTime(post.data.created_utc)}} ago
         </div>
       </div>
     </div>
@@ -21,7 +20,7 @@
 </template>
 
 <script>
-
+import {parse, distanceInWords} from 'date-fns' 
 export default {
   name: 'PostsView',
   data () {
@@ -33,7 +32,6 @@ export default {
     weeklyFilter() {
       return this.posts.filter(function(posts) {
         return !posts.data.stickied 
-        // && posts.data.is_reddit_media_domain
       })
     }
   },
@@ -49,8 +47,8 @@ export default {
           this.posts = result.data.children
         })
     },
-    getTime(val) {
-      return 
+    getTime(date) {
+      return distanceInWords(parse(date * 1000), new Date())
     },
     linkify(link) {
       return `https://www.reddit.com${link}`
@@ -65,23 +63,34 @@ export default {
   padding-bottom 25px
 .card
   box-sizing border-box
-  border solid black 1px
+  // border solid black 1px
   margin-left  auto
-  margin-right auto 
+  margin-right auto
   margin-top 25px
-  margin bottom 25px 
+  margin-bottom 25px 
   width 500px
-  
+  box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+  padding-top 3px
   background-color white
-  
+  a
+    text-decoration none
+    color #afafaf
+    &:hover
+      color	#8c8c8c
+
   .post-heading
     margin 5px
+
   .score
     margin 5px
+    display inline-block
+
+  .time
+    margin 8px 5px 5px 5px 
+    display inline-block
+    float right
   
 img 
   width 100%
-  
-  
 
 </style>
