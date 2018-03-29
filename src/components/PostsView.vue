@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import {parse, distanceInWords} from 'date-fns'
 export default {
   name: 'PostsView',
@@ -37,24 +38,21 @@ export default {
     }
   },
   mounted () {
-    this.load()
+    this.loadAxios()
   },
   methods: {
     loadMore () {
       const last = this.posts[this.posts.length - 1].data.name
       const url = `https://www.reddit.com/r/analog/.json?count=25&after=${last}`
-      fetch(url)
-        .then(response => response.json())
-        .then(result => {
-          this.posts = this.posts.concat(result.data.children)
+      axios.get(url)
+        .then(response => {
+          this.posts = this.posts.concat(response.data.data.children)
         })
     },
-    load () {
-      const url = 'https://www.reddit.com/r/analog.json'
-      fetch(url)
-        .then(response => response.json())
-        .then(result => {
-          this.posts = result.data.children
+    loadAxios () {
+      axios.get('https://www.reddit.com/r/analog.json')
+        .then(response => {
+          this.posts = response.data.data.children
         })
     },
     getTime (date) {
