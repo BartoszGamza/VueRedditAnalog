@@ -40,7 +40,18 @@ export default {
   mounted () {
     this.loadAxios()
   },
+  created () {
+    addEventListener('scroll', () => {
+      this.scrolly()
+    })
+  },
   methods: {
+    scrolly () {
+      var bottom = document.body.scrollHeight - window.scrollY - window.innerHeight
+      if (bottom === 0) {
+        this.loadMore()
+      }
+    },
     loadMore () {
       const last = this.posts[this.posts.length - 1].data.name
       const url = `https://www.reddit.com/r/analog/.json?count=25&after=${last}`
@@ -71,7 +82,6 @@ export default {
   padding-bottom 25px
 .card
   box-sizing border-box
-  // border solid black 1px
   margin-left  auto
   margin-right auto
   margin-top 25px
