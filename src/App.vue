@@ -16,7 +16,7 @@ body
   background-color #f8f8fa
   margin 0
   padding-top 25px
-  color #afafaf 
+  color #afafaf
   overflow-y scroll
 
 .header
