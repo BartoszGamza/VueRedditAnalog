@@ -9,7 +9,7 @@
           <img :src="post.data.preview.images[0].source.url">
         </div>
         <div class="score">
-           △ {{post.data.score}} ☞ {{post.data.author}} ✉︎ {{post.data.num_comments}} || {{post.data.name}}
+           △ {{post.data.score}} ☞ {{post.data.author}} ✉︎ {{post.data.num_comments}}
         </div>
         <div class="time">
            {{getTime(post.data.created_utc)}} ago
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     scrolly () {
-      var bottom = document.body.scrollHeight - window.scrollY - window.innerHeight
+      var bottom = parseInt(document.body.scrollHeight - window.scrollY - window.innerHeight)
       if (bottom === 0) {
         this.loadMore()
       }

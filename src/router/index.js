@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import PostsView from '@/components/PostsView'
+import Hot from '@/components/Hot'
 import Rising from '@/components/Rising'
 import New from '@/components/New'
 import Controversial from '@/components/Controversial'
@@ -13,8 +13,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'PostsView',
-      component: PostsView
+      name: 'Hot',
+      component: Hot
     },
     {
       path: '/rising',

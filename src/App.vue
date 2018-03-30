@@ -2,12 +2,12 @@
   <div id="app">
     <header class="header">
       <nav class="inner">
-        <router-link to="/">hot</router-link>
-        <router-link to="/rising">rising</router-link>
-        <router-link to="/new">new</router-link>
-        <router-link to="/controversial">controversial</router-link>
-        <router-link to="/top">top</router-link>
-        <router-link to="/gold">gold</router-link>
+        <router-link to="/">HOT</router-link>
+        <router-link to="/rising">RISING</router-link>
+        <router-link to="/new">NEW</router-link>
+        <router-link to="/controversial">CONTROVERSIAL</router-link>
+        <router-link to="/top">TOP</router-link>
+        <router-link to="/gold">GOLD</router-link>
       </nav>
     </header>
     <router-view class="view"/>
@@ -47,6 +47,8 @@ body
     vertical-align middle
     font-weight 300
     letter-spacing .075em
+    padding-left 15px
+    padding-right 15px
     &:hover
       color #8c8c8c
 .view

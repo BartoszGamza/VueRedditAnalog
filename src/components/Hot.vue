@@ -9,7 +9,7 @@
           <img :src="post.data.preview.images[0].source.url">
         </div>
         <div class="score">
-           △ {{post.data.score}} ☞ {{post.data.author}} ✉︎ {{post.data.num_comments}} || {{post.data.name}}
+           △ {{post.data.score}} ☞ {{post.data.author}} ✉︎ {{post.data.num_comments}}
         </div>
         <div class="time">
            {{getTime(post.data.created_utc)}} ago
@@ -23,7 +23,7 @@
 import axios from 'axios'
 import {parse, distanceInWords} from 'date-fns'
 export default {
-  name: 'PostsView',
+  name: 'Hot',
   data () {
     return {
       posts: []
@@ -36,9 +36,6 @@ export default {
       })
     }
   },
-  // mounted () {
-  //   this.loadAxios()
-  // },
   created () {
     this.loadAxios()
     addEventListener('scroll', () => {
@@ -47,7 +44,7 @@ export default {
   },
   methods: {
     scrolly () {
-      var bottom = document.body.scrollHeight - window.scrollY - window.innerHeight
+      var bottom = parseInt(document.body.scrollHeight - window.scrollY - window.innerHeight)
       if (bottom === 0) {
         this.loadMore()
       }
@@ -59,13 +56,11 @@ export default {
         .then(response => {
           this.posts = this.posts.concat(response.data.data.children)
         })
-      console.log(url)
     },
     loadAxios () {
       axios.get('https://www.reddit.com/r/analog.json')
         .then(response => {
           this.posts = response.data.data.children
-          console.log(this.posts)
         })
     },
     getTime (date) {

@@ -9,7 +9,7 @@
           <img :src="post.data.preview.images[0].source.url">
         </div>
         <div class="score">
-           △ {{post.data.score}} ☞ {{post.data.author}} ✉︎ {{post.data.num_comments}} || {{post.data.name}}
+           △ {{post.data.score}} ☞ {{post.data.author}} ✉︎ {{post.data.num_comments}}
         </div>
         <div class="time">
            {{getTime(post.data.created_utc)}} ago
@@ -52,7 +52,6 @@ export default {
       axios.get('https://www.reddit.com/r/analog/gilded/.json')
         .then(response => {
           this.posts = response.data.data.children
-          console.log(this.posts)
         })
     },
     getTime (date) {
