@@ -2,7 +2,12 @@
   <div id="app">
     <header class="header">
       <nav class="inner">
-        <h3>r/analog</h3>
+        <router-link to="/">hot</router-link>
+        <router-link to="/rising">rising</router-link>
+        <router-link to="/new">new</router-link>
+        <router-link to="/controversial">controversial</router-link>
+        <router-link to="/top">top</router-link>
+        <router-link to="/gold">gold</router-link>
       </nav>
     </header>
     <router-view class="view"/>
@@ -31,14 +36,19 @@ body
   .inner
     max-width 800px
     box-sizing border-box
-    text-align center
     margin 0px auto
-  h3
-  line-height 24px
-  display inline-block
-  vertical-align middle
-  font-weight 300
-  letter-spacing .075em
+    text-align center
+    padding 15px 5px
+  a
+    text-decoration none
+    color #afafaf
+    line-height 24px
+    display inline-block
+    vertical-align middle
+    font-weight 300
+    letter-spacing .075em
+    &:hover
+      color #8c8c8c
 .view
   max-width 800px
   margin 0 auto

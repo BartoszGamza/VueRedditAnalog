@@ -23,7 +23,7 @@
 import axios from 'axios'
 import {parse, distanceInWords} from 'date-fns'
 export default {
-  name: 'PostsView',
+  name: 'Controversial',
   data () {
     return {
       posts: []
@@ -53,7 +53,7 @@ export default {
     },
     loadMore () {
       const last = this.posts[this.posts.length - 1].data.name
-      const url = `https://www.reddit.com/r/analog/.json?after=${last}`
+      const url = `https://www.reddit.com/r/analog/controversial/.json?after=${last}`
       axios.get(url)
         .then(response => {
           this.posts = this.posts.concat(response.data.data.children)
@@ -61,7 +61,7 @@ export default {
       console.log(url)
     },
     loadAxios () {
-      axios.get('https://www.reddit.com/r/analog.json')
+      axios.get('https://www.reddit.com/r/analog/controversial/.json')
         .then(response => {
           this.posts = response.data.data.children
         })
