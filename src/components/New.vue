@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-for="post in posts" :key="post.id">
+    <div v-for="post in weeklyFilter" :key="post.id">
       <div class="card">
         <div class="post-heading">
           <a :href="linkify(post.data.permalink)" target="_blank">{{post.data.title}}</a>
@@ -29,10 +29,18 @@ export default {
       posts: []
     }
   },
-  mounted () {
-    this.loadAxios()
+  // mounted () {
+  //   this.loadAxios()
+  // },
+  computed: {
+    weeklyFilter () {
+      return this.posts.filter(function (posts) {
+        return posts.data.preview
+      })
+    }
   },
   created () {
+    this.loadAxios()
     addEventListener('scroll', () => {
       this.scrolly()
     })
@@ -57,6 +65,7 @@ export default {
       axios.get('https://www.reddit.com/r/analog/new/.json')
         .then(response => {
           this.posts = response.data.data.children
+          console.log(this.posts)
         })
     },
     getTime (date) {

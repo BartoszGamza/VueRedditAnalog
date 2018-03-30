@@ -32,7 +32,7 @@ export default new Router({
       component: Controversial
     },
     {
-      path: './top',
+      path: '/top',
       name: 'Top',
       component: Top
     },

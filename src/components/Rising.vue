@@ -29,7 +29,7 @@ export default {
       posts: []
     }
   },
-  mounted () {
+  created () {
     this.loadAxios()
   },
   methods: {

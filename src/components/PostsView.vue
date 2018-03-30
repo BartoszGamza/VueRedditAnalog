@@ -32,14 +32,15 @@ export default {
   computed: {
     weeklyFilter () {
       return this.posts.filter(function (posts) {
-        return !posts.data.stickied
+        return posts.data.preview
       })
     }
   },
-  mounted () {
-    this.loadAxios()
-  },
+  // mounted () {
+  //   this.loadAxios()
+  // },
   created () {
+    this.loadAxios()
     addEventListener('scroll', () => {
       this.scrolly()
     })
@@ -64,6 +65,7 @@ export default {
       axios.get('https://www.reddit.com/r/analog.json')
         .then(response => {
           this.posts = response.data.data.children
+          console.log(this.posts)
         })
     },
     getTime (date) {

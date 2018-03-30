@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-for="post in posts" :key="post.id">
+    <div v-for="post in weeklyFilter" :key="post.id">
       <div class="card">
         <div class="post-heading">
           <a :href="linkify(post.data.permalink)" target="_blank">{{post.data.title}}</a>
@@ -29,7 +29,14 @@ export default {
       posts: []
     }
   },
-  mounted () {
+  computed: {
+    weeklyFilter () {
+      return this.posts.filter(function (posts) {
+        return posts.data.preview
+      })
+    }
+  },
+  created () {
     this.loadAxios()
   },
   methods: {
@@ -40,12 +47,12 @@ export default {
         .then(response => {
           this.posts = this.posts.concat(response.data.data.children)
         })
-      console.log(url)
     },
     loadAxios () {
       axios.get('https://www.reddit.com/r/analog/gilded/.json')
         .then(response => {
           this.posts = response.data.data.children
+          console.log(this.posts)
         })
     },
     getTime (date) {

@@ -29,10 +29,15 @@ export default {
       posts: []
     }
   },
-  mounted () {
-    this.loadAxios()
+  computed: {
+    weeklyFilter () {
+      return this.posts.filter(function (posts) {
+        return posts.data.preview
+      })
+    }
   },
   created () {
+    this.loadAxios()
     addEventListener('scroll', () => {
       this.scrolly()
     })
@@ -51,7 +56,6 @@ export default {
         .then(response => {
           this.posts = this.posts.concat(response.data.data.children)
         })
-      console.log(url)
     },
     loadAxios () {
       axios.get('https://www.reddit.com/r/analog/top/.json')

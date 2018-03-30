@@ -32,14 +32,12 @@ export default {
   computed: {
     weeklyFilter () {
       return this.posts.filter(function (posts) {
-        return !posts.data.stickied
+        return posts.data.preview
       })
     }
   },
-  mounted () {
-    this.loadAxios()
-  },
   created () {
+    this.loadAxios()
     addEventListener('scroll', () => {
       this.scrolly()
     })
@@ -58,7 +56,6 @@ export default {
         .then(response => {
           this.posts = this.posts.concat(response.data.data.children)
         })
-      console.log(url)
     },
     loadAxios () {
       axios.get('https://www.reddit.com/r/analog/controversial/.json')
