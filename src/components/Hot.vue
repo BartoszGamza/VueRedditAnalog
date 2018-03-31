@@ -73,7 +73,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .container
   padding-top 25px
   padding-bottom 25px
@@ -83,7 +83,7 @@ export default {
   margin-right auto
   margin-top 25px
   margin-bottom 25px
-  width 500px
+  max-width 500px
   box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
   padding-top 3px
   background-color white
